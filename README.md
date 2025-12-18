@@ -238,6 +238,7 @@ public class ReportScheduler {
 - [x] Metrics Collector (TaskMetricsCollector)
 - [x] Dead Letter Queue Handler (DeadLetterQueueHandler)
 - [x] Task Timeout Handler (TaskTimeoutHandler)
+- [x] Retry Policy (exponential backoff, fixed delay, custom predicates)
 
 ## 🤝 Contributing
 
