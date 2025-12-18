@@ -221,7 +221,7 @@ public class ReportScheduler {
 - [x] Metrics & monitoring (Micrometer)
 - [x] Web dashboard
 - [x] Delayed/scheduled tasks
-- [ ] Task dependencies (DAG)
+- [x] Task dependencies (DAG)
 
 ## 🤝 Contributing
 
