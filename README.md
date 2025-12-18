@@ -220,7 +220,7 @@ public class ReportScheduler {
 - [x] Kafka queue backend
 - [x] Metrics & monitoring (Micrometer)
 - [x] Web dashboard
-- [ ] Delayed/scheduled tasks
+- [x] Delayed/scheduled tasks
 - [ ] Task dependencies (DAG)
 
 ## 🤝 Contributing

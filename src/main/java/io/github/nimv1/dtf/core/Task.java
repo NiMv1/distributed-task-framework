@@ -1,6 +1,7 @@
 package io.github.nimv1.dtf.core;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
@@ -32,6 +33,7 @@ public class Task implements Serializable {
     private final TaskPriority priority;
     private final int maxRetries;
     private final long timeoutMs;
+    private final Instant scheduledAt;
     
     private TaskStatus status;
     private int retryCount;
@@ -48,6 +50,7 @@ public class Task implements Serializable {
         this.priority = builder.priority;
         this.maxRetries = builder.maxRetries;
         this.timeoutMs = builder.timeoutMs;
+        this.scheduledAt = builder.scheduledAt;
         this.status = TaskStatus.PENDING;
         this.retryCount = 0;
         this.createdAt = Instant.now();
@@ -61,6 +64,7 @@ public class Task implements Serializable {
             @JsonProperty("priority") TaskPriority priority,
             @JsonProperty("maxRetries") int maxRetries,
             @JsonProperty("timeoutMs") long timeoutMs,
+            @JsonProperty("scheduledAt") Instant scheduledAt,
             @JsonProperty("status") TaskStatus status,
             @JsonProperty("retryCount") int retryCount,
             @JsonProperty("createdAt") Instant createdAt,
@@ -74,6 +78,7 @@ public class Task implements Serializable {
         this.priority = priority;
         this.maxRetries = maxRetries;
         this.timeoutMs = timeoutMs;
+        this.scheduledAt = scheduledAt;
         this.status = status;
         this.retryCount = retryCount;
         this.createdAt = createdAt;
@@ -94,7 +99,13 @@ public class Task implements Serializable {
     public TaskPriority getPriority() { return priority; }
     public int getMaxRetries() { return maxRetries; }
     public long getTimeoutMs() { return timeoutMs; }
+    public Instant getScheduledAt() { return scheduledAt; }
     public TaskStatus getStatus() { return status; }
+    
+    @JsonIgnore
+    public boolean isReadyToExecute() {
+        return scheduledAt == null || !Instant.now().isBefore(scheduledAt);
+    }
     public int getRetryCount() { return retryCount; }
     public Instant getCreatedAt() { return createdAt; }
     public Instant getStartedAt() { return startedAt; }
@@ -151,6 +162,7 @@ public class Task implements Serializable {
         private TaskPriority priority = TaskPriority.NORMAL;
         private int maxRetries = 3;
         private long timeoutMs = 300000; // 5 minutes default
+        private Instant scheduledAt;
 
         private Builder(String type) {
             this.type = type;
@@ -178,6 +190,16 @@ public class Task implements Serializable {
 
         public Builder timeout(long timeoutMs) {
             this.timeoutMs = timeoutMs;
+            return this;
+        }
+
+        public Builder scheduledAt(Instant scheduledAt) {
+            this.scheduledAt = scheduledAt;
+            return this;
+        }
+
+        public Builder delay(java.time.Duration delay) {
+            this.scheduledAt = Instant.now().plus(delay);
             return this;
         }
 

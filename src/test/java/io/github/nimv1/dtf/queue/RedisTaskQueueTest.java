@@ -66,7 +66,10 @@ class RedisTaskQueueTest {
     @Test
     void shouldPollTask() throws Exception {
         Task task = Task.builder("test-task").id("task-456").build();
-        String taskJson = objectMapper.writeValueAsString(task);
+        // Use the same ObjectMapper configuration as RedisTaskQueue
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        String taskJson = mapper.writeValueAsString(task);
         
         when(zSetOps.reverseRange("dtf::queue", 0, 0)).thenReturn(Set.of("task-456"));
         when(zSetOps.remove("dtf::queue", "task-456")).thenReturn(1L);
@@ -110,7 +113,9 @@ class RedisTaskQueueTest {
     @Test
     void shouldCancelPendingTask() throws Exception {
         Task task = Task.builder("test-task").id("task-cancel").build();
-        String taskJson = objectMapper.writeValueAsString(task);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        String taskJson = mapper.writeValueAsString(task);
         
         when(valueOps.get("dtf::tasks:task-cancel")).thenReturn(taskJson);
         when(zSetOps.remove("dtf::queue", "task-cancel")).thenReturn(1L);
