@@ -234,6 +234,7 @@ public class ReportScheduler {
 - [x] Priority Queue (CRITICAL > HIGH > NORMAL > LOW)
 - [x] Cron Scheduler (fixedRate, fixedDelay, once)
 - [x] Distributed Tracing (TaskTracer, MDC integration)
+- [x] Async Callbacks (TaskCallback, CallbackRegistry)
 
 ## 🤝 Contributing
 
