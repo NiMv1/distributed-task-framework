@@ -237,6 +237,7 @@ public class ReportScheduler {
 - [x] Async Callbacks (TaskCallback, CallbackRegistry)
 - [x] Metrics Collector (TaskMetricsCollector)
 - [x] Dead Letter Queue Handler (DeadLetterQueueHandler)
+- [x] Task Timeout Handler (TaskTimeoutHandler)
 
 ## 🤝 Contributing
 
