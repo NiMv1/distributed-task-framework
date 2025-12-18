@@ -225,6 +225,8 @@ public class ReportScheduler {
 - [x] Rate limiting
 - [x] Resilience (Circuit Breaker, Retry, Bulkhead, Timeout)
 - [x] Event-driven architecture (Task Events)
+- [x] Batch processing (TaskBatch, BatchProcessor)
+- [x] Worker Pool
 
 ## 🤝 Contributing
 
