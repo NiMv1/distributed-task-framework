@@ -3,16 +3,19 @@ package io.github.nimv1.dtf.config;
 import io.github.nimv1.dtf.client.TaskClient;
 import io.github.nimv1.dtf.handler.TaskHandler;
 import io.github.nimv1.dtf.queue.InMemoryTaskQueue;
+import io.github.nimv1.dtf.queue.RedisTaskQueue;
 import io.github.nimv1.dtf.queue.TaskQueue;
 import io.github.nimv1.dtf.worker.Worker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -40,12 +43,17 @@ public class TaskFrameworkAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public TaskQueue taskQueue() {
-        String type = properties.getQueue().getType();
-        log.info("Initializing task queue: {}", type);
-        
-        // For now, only in-memory is implemented
-        // Redis and Kafka implementations can be added later
+    @ConditionalOnProperty(prefix = "dtf.queue", name = "type", havingValue = "redis")
+    @ConditionalOnBean(StringRedisTemplate.class)
+    public TaskQueue redisTaskQueue(StringRedisTemplate redisTemplate) {
+        log.info("Initializing Redis task queue with prefix: {}", properties.getQueue().getRedisKeyPrefix());
+        return new RedisTaskQueue(redisTemplate, properties.getQueue().getRedisKeyPrefix());
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public TaskQueue inMemoryTaskQueue() {
+        log.info("Initializing in-memory task queue");
         return new InMemoryTaskQueue();
     }
 

@@ -1,5 +1,8 @@
 package io.github.nimv1.dtf.core;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Map;
@@ -48,6 +51,36 @@ public class Task implements Serializable {
         this.status = TaskStatus.PENDING;
         this.retryCount = 0;
         this.createdAt = Instant.now();
+    }
+
+    @JsonCreator
+    public Task(
+            @JsonProperty("id") String id,
+            @JsonProperty("type") String type,
+            @JsonProperty("payload") Map<String, Object> payload,
+            @JsonProperty("priority") TaskPriority priority,
+            @JsonProperty("maxRetries") int maxRetries,
+            @JsonProperty("timeoutMs") long timeoutMs,
+            @JsonProperty("status") TaskStatus status,
+            @JsonProperty("retryCount") int retryCount,
+            @JsonProperty("createdAt") Instant createdAt,
+            @JsonProperty("startedAt") Instant startedAt,
+            @JsonProperty("completedAt") Instant completedAt,
+            @JsonProperty("workerId") String workerId,
+            @JsonProperty("errorMessage") String errorMessage) {
+        this.id = id;
+        this.type = type;
+        this.payload = payload;
+        this.priority = priority;
+        this.maxRetries = maxRetries;
+        this.timeoutMs = timeoutMs;
+        this.status = status;
+        this.retryCount = retryCount;
+        this.createdAt = createdAt;
+        this.startedAt = startedAt;
+        this.completedAt = completedAt;
+        this.workerId = workerId;
+        this.errorMessage = errorMessage;
     }
 
     public static Builder builder(String type) {
