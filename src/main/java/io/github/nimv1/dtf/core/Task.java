@@ -146,6 +146,17 @@ public class Task implements Serializable {
         return retryCount < maxRetries;
     }
 
+    /**
+     * Resets the task for retry from dead letter queue.
+     */
+    public void resetForRetry() {
+        this.status = TaskStatus.PENDING;
+        this.startedAt = null;
+        this.completedAt = null;
+        this.workerId = null;
+        this.errorMessage = null;
+    }
+
     @Override
     public String toString() {
         return "Task{id='" + id + "', type='" + type + "', status=" + status + 

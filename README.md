@@ -236,6 +236,7 @@ public class ReportScheduler {
 - [x] Distributed Tracing (TaskTracer, MDC integration)
 - [x] Async Callbacks (TaskCallback, CallbackRegistry)
 - [x] Metrics Collector (TaskMetricsCollector)
+- [x] Dead Letter Queue Handler (DeadLetterQueueHandler)
 
 ## 🤝 Contributing
 
