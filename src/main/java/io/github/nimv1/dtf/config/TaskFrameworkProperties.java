@@ -25,6 +25,7 @@ public class TaskFrameworkProperties {
     private boolean enabled = true;
     private WorkerProperties worker = new WorkerProperties();
     private QueueProperties queue = new QueueProperties();
+    private DashboardProperties dashboard = new DashboardProperties();
 
     public boolean isEnabled() { return enabled; }
     public void setEnabled(boolean enabled) { this.enabled = enabled; }
@@ -32,6 +33,8 @@ public class TaskFrameworkProperties {
     public void setWorker(WorkerProperties worker) { this.worker = worker; }
     public QueueProperties getQueue() { return queue; }
     public void setQueue(QueueProperties queue) { this.queue = queue; }
+    public DashboardProperties getDashboard() { return dashboard; }
+    public void setDashboard(DashboardProperties dashboard) { this.dashboard = dashboard; }
 
     public static class WorkerProperties {
         private int concurrency = 4;
@@ -54,5 +57,12 @@ public class TaskFrameworkProperties {
         public void setType(String type) { this.type = type; }
         public String getRedisKeyPrefix() { return redisKeyPrefix; }
         public void setRedisKeyPrefix(String redisKeyPrefix) { this.redisKeyPrefix = redisKeyPrefix; }
+    }
+
+    public static class DashboardProperties {
+        private boolean enabled = false;
+
+        public boolean isEnabled() { return enabled; }
+        public void setEnabled(boolean enabled) { this.enabled = enabled; }
     }
 }

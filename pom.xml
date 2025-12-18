@@ -94,6 +94,14 @@
             <version>${spring-boot.version}</version>
         </dependency>
 
+        <!-- Web (optional, for dashboard) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>6.1.1</version>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

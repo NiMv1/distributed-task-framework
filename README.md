@@ -219,9 +219,9 @@ public class ReportScheduler {
 - [x] Redis queue backend
 - [x] Kafka queue backend
 - [x] Metrics & monitoring (Micrometer)
+- [x] Web dashboard
 - [ ] Delayed/scheduled tasks
 - [ ] Task dependencies (DAG)
-- [ ] Web dashboard
 
 ## 🤝 Contributing
 
