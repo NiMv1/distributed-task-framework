@@ -235,6 +235,7 @@ public class ReportScheduler {
 - [x] Cron Scheduler (fixedRate, fixedDelay, once)
 - [x] Distributed Tracing (TaskTracer, MDC integration)
 - [x] Async Callbacks (TaskCallback, CallbackRegistry)
+- [x] Metrics Collector (TaskMetricsCollector)
 
 ## 🤝 Contributing
 
