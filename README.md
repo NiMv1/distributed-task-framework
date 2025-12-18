@@ -228,6 +228,8 @@ public class ReportScheduler {
 - [x] Batch processing (TaskBatch, BatchProcessor)
 - [x] Worker Pool
 - [x] Task Interceptors (preHandle, postHandle, afterCompletion)
+- [x] Task Context (thread-local, headers, parent-child)
+- [x] Task Serialization (JSON)
 
 ## 🤝 Contributing
 
