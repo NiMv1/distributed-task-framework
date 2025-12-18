@@ -231,6 +231,7 @@ public class ReportScheduler {
 - [x] Task Context (thread-local, headers, parent-child)
 - [x] Task Serialization (JSON)
 - [x] Health Indicators (Queue, WorkerPool)
+- [x] Priority Queue (CRITICAL > HIGH > NORMAL > LOW)
 
 ## 🤝 Contributing
 
