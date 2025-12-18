@@ -233,6 +233,7 @@ public class ReportScheduler {
 - [x] Health Indicators (Queue, WorkerPool)
 - [x] Priority Queue (CRITICAL > HIGH > NORMAL > LOW)
 - [x] Cron Scheduler (fixedRate, fixedDelay, once)
+- [x] Distributed Tracing (TaskTracer, MDC integration)
 
 ## 🤝 Contributing
 
