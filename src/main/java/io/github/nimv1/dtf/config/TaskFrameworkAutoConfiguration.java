@@ -2,15 +2,18 @@ package io.github.nimv1.dtf.config;
 
 import io.github.nimv1.dtf.client.TaskClient;
 import io.github.nimv1.dtf.handler.TaskHandler;
+import io.github.nimv1.dtf.metrics.TaskMetrics;
 import io.github.nimv1.dtf.queue.InMemoryTaskQueue;
 import io.github.nimv1.dtf.queue.RedisTaskQueue;
 import io.github.nimv1.dtf.queue.TaskQueue;
 import io.github.nimv1.dtf.worker.Worker;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -61,6 +64,15 @@ public class TaskFrameworkAutoConfiguration {
     @ConditionalOnMissingBean
     public TaskClient taskClient(TaskQueue taskQueue) {
         return new TaskClient(taskQueue);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnClass(MeterRegistry.class)
+    @ConditionalOnBean(MeterRegistry.class)
+    public TaskMetrics taskMetrics(MeterRegistry registry, TaskQueue taskQueue) {
+        log.info("Initializing task metrics");
+        return new TaskMetrics(registry, taskQueue);
     }
 
     @Bean

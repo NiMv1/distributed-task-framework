@@ -216,12 +216,12 @@ public class ReportScheduler {
 - [x] In-memory queue implementation
 - [x] Priority-based scheduling
 - [x] Automatic retries
-- [ ] Redis queue backend
-- [ ] Kafka queue backend
+- [x] Redis queue backend
+- [x] Kafka queue backend
+- [x] Metrics & monitoring (Micrometer)
 - [ ] Delayed/scheduled tasks
 - [ ] Task dependencies (DAG)
 - [ ] Web dashboard
-- [ ] Metrics & monitoring
 
 ## 🤝 Contributing
 

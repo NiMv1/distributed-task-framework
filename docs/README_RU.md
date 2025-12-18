@@ -107,9 +107,22 @@ dtf:
     poll-interval-ms: 100    # Интервал опроса очереди
     auto-start: true         # Автозапуск воркеров
   queue:
-    type: in-memory          # Бэкенд очереди (in-memory, redis)
+    type: in-memory          # Бэкенд очереди (in-memory, redis, kafka)
     redis-key-prefix: "dtf:" # Префикс ключей Redis
 ```
+
+### Метрики (Micrometer)
+
+При наличии Micrometer автоматически регистрируются метрики:
+
+| Метрика | Тип | Описание |
+|---------|-----|----------|
+| `dtf.tasks.submitted` | Counter | Количество отправленных задач |
+| `dtf.tasks.completed` | Counter | Количество успешно выполненных задач |
+| `dtf.tasks.failed` | Counter | Количество неудачных задач |
+| `dtf.tasks.retried` | Counter | Количество повторов |
+| `dtf.tasks.queue.size` | Gauge | Текущий размер очереди |
+| `dtf.tasks.processing.time` | Timer | Время обработки задач |
 
 ### Жизненный цикл задачи
 
