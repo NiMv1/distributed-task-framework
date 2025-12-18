@@ -227,6 +227,7 @@ public class ReportScheduler {
 - [x] Event-driven architecture (Task Events)
 - [x] Batch processing (TaskBatch, BatchProcessor)
 - [x] Worker Pool
+- [x] Task Interceptors (preHandle, postHandle, afterCompletion)
 
 ## 🤝 Contributing
 
