@@ -230,6 +230,7 @@ public class ReportScheduler {
 - [x] Task Interceptors (preHandle, postHandle, afterCompletion)
 - [x] Task Context (thread-local, headers, parent-child)
 - [x] Task Serialization (JSON)
+- [x] Health Indicators (Queue, WorkerPool)
 
 ## 🤝 Contributing
 
