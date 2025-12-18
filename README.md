@@ -222,6 +222,7 @@ public class ReportScheduler {
 - [x] Web dashboard
 - [x] Delayed/scheduled tasks
 - [x] Task dependencies (DAG)
+- [x] Rate limiting
 
 ## 🤝 Contributing
 
