@@ -223,6 +223,7 @@ public class ReportScheduler {
 - [x] Delayed/scheduled tasks
 - [x] Task dependencies (DAG)
 - [x] Rate limiting
+- [x] Resilience (Circuit Breaker, Retry, Bulkhead)
 
 ## 🤝 Contributing
 
