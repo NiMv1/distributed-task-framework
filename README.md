@@ -232,6 +232,7 @@ public class ReportScheduler {
 - [x] Task Serialization (JSON)
 - [x] Health Indicators (Queue, WorkerPool)
 - [x] Priority Queue (CRITICAL > HIGH > NORMAL > LOW)
+- [x] Cron Scheduler (fixedRate, fixedDelay, once)
 
 ## 🤝 Contributing
 
