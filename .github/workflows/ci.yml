@@ -21,11 +21,15 @@ jobs:
         cache: maven
     
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B -DskipTests package --file pom.xml
     
     - name: Run tests
-      run: mvn test
+      run: mvn -B test
     
     - name: Upload coverage reports
       uses: codecov/codecov-action@v3
       if: success()
+      with:
+        files: target/site/jacoco/jacoco.xml
+        flags: unittests
+        fail_ci_if_error: false
